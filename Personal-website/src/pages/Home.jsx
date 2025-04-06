@@ -1,6 +1,6 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stars } from '@react-three/drei';
+import { OrbitControls, Stars, Html, Text, useScroll, ScrollControls, Scroll } from '@react-three/drei';
 import { motion } from 'framer-motion';
 
 const Box = () => (
@@ -75,5 +75,68 @@ const Home = () => {
     </motion.div>
   );
 };
+
+
+
+const points = [
+  new THREE.Vector3(0, 0, 0),
+  new THREE.Vector3(5, 2, -5),
+  new THREE.Vector3(10, 0, -10),
+  new THREE.Vector3(15, -2, -5),
+  new THREE.Vector3(20, 0, 0),
+];
+
+const curve = new THREE.CatmullRomCurve3(points);
+
+const Milestone = ({ position, label, description }) => {
+  return (
+    <group position={position}>
+      <mesh>
+        <boxGeometry args={[2, 1, 0.5]} />
+        <meshStandardMaterial color={'#ff6f61'} />
+      </mesh>
+      <Html distanceFactor={10} position={[0, 1.2, 0]}>
+        <div style={{ background: 'white', padding: '0.5rem', borderRadius: '8px' }}>
+          <strong>{label}</strong>
+          <p style={{ maxWidth: '200px' }}>{description}</p>
+        </div>
+      </Html>
+    </group>
+  );
+};
+
+const Rollercoaster = () => {
+  const cameraRef = useRef();
+  const t = useRef(0);
+
+  useFrame((state, delta) => {
+    t.current += delta * 0.03; // adjust speed here
+    if (t.current > 1) t.current = 0;
+    const point = curve.getPointAt(t.current);
+    state.camera.position.lerp(point, 0.1);
+    state.camera.lookAt(curve.getPointAt(Math.min(t.current + 0.01, 1)));
+  });
+
+  return (
+    <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
+      <OrbitControls enableZoom={false} />
+
+      <mesh>
+        <tubeGeometry args={[curve, 100, 0.1, 8, false]} />
+        <meshStandardMaterial color={'#0077be'} />
+      </mesh>
+
+      <Milestone position={points[0]} label="Teaching Assistant" description="Intro to Comp Eng – Grading & mentoring 25+ students in C, Java, Assembly" />
+      <Milestone position={points[1]} label="Sun Marketing Intern" description="Migrated to Entra ID, Azure Blob for 10+ clients, improved retrieval by 25%" />
+      <Milestone position={points[2]} label="Googol Calendar" description="PHP+MySQL AJAX calendar with secure auth, Google Places integration" />
+      <Milestone position={points[3]} label="The Moosani Times" description="Built a secure news site with filters, login, SQL injection protection" />
+      <Milestone position={points[4]} label="Capital One Summit" description="Selected for top 49/350 to join 2-day hackathon and workshops" />
+    </Canvas>
+  );
+};
+
+export default Rollercoaster;
 
 export default Home;
