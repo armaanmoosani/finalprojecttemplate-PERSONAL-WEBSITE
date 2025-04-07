@@ -5,6 +5,7 @@ import About from './pages/About';
 import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Footer from './pages/Footer'; 
 import ThemeProvider from './components/ThemeContext';
 import { AnimatePresence } from 'framer-motion';
 
@@ -29,9 +30,9 @@ function App() {
       <Router>
         <NavBar />
         <AnimatedRoutes />
+        <Footer /> 
       </Router>
     </ThemeProvider>
   );
 }
-
 export default App;

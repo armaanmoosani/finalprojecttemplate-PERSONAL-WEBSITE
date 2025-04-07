@@ -2,15 +2,9 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import Rollercoaster from '../components/Rollercoaster'; 
-import profilePic from '../assets/IMG_104330_0.jpeg'; 
-
-const Box = () => (
-  <mesh rotation={[0.5, 0.5, 0]}>
-    <boxGeometry args={[1, 1, 1]} />
-    <meshStandardMaterial color={'#ff0051'} />
-  </mesh>
-);
+import Rollercoaster from '../components/Rollercoaster';
+import profilePic from '../assets/IMG_104330_0.jpeg';
+import './Home.css';
 
 const ThreeBackground = () => (
   <Canvas
@@ -26,7 +20,6 @@ const ThreeBackground = () => (
   >
     <ambientLight intensity={0.5} />
     <pointLight position={[10, 10, 10]} />
-    <Box />
     <Stars
       radius={100}
       depth={50}
@@ -35,54 +28,62 @@ const ThreeBackground = () => (
       saturation={0}
       fade
     />
-    <OrbitControls enableZoom={false} />
+    <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
   </Canvas>
 );
 
 const Home = () => {
   return (
-    <div style={{ overflowX: 'hidden' }}>
+    <div className="home-wrapper">
       <motion.div
-        className="home"
+        className="home-section"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.8 }}
-        style={{
-          position: 'relative',
-          minHeight: '100vh',
-          paddingTop: '80px',
-          textAlign: 'center',
-        }}
       >
         <ThreeBackground />
-        <div style={{ position: 'relative', zIndex: 1, padding: '2rem' }}>
+
+        <div className="hero-content">
           <motion.img
             src={profilePic}
             alt="Profile"
-            style={{ width: '150px', borderRadius: '50%', marginBottom: '1rem' }}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, ease: 'backOut' }}
+            className="hero-pfp"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
           />
+
           <motion.h1
+            className="hero-title"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Hi, I'm Armaan!
+            Hi, I'm <span className="highlight">Armaan</span>
           </motion.h1>
+
           <motion.p
+            className="hero-subtitle"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
           >
-            Welcome to my professional portfolio. Explore my projects, experience, and more!
+            
           </motion.p>
+
+          <motion.div
+            className="scroll-down"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 1 }}
+          >
+            <span className="scroll-indicator">↓</span>
+          </motion.div>
         </div>
       </motion.div>
 
-      <section style={{ height: '100vh', position: 'relative' }}>
+      <section className="experience-section">
         <Rollercoaster />
       </section>
     </div>
