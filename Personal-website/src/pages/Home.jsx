@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import Rollercoaster from '../components/Rollercoaster'; 
+import profilePic from '../assets/IMG_104330_0.jpeg'; 
 
 const Box = () => (
   <mesh rotation={[0.5, 0.5, 0]}>
@@ -57,7 +58,7 @@ const Home = () => {
         <ThreeBackground />
         <div style={{ position: 'relative', zIndex: 1, padding: '2rem' }}>
           <motion.img
-            src="/assets/IMG_104330_0.jpeg" 
+            src={profilePic}
             alt="Profile"
             style={{ width: '150px', borderRadius: '50%', marginBottom: '1rem' }}
             initial={{ scale: 0 }}

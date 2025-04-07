@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import profilePic from '../assets/IMG_104330_0.jpeg'; 
 
 const About = () => {
   return (
@@ -14,7 +15,7 @@ const About = () => {
       <h2>About Me</h2>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', marginTop: '2rem' }}>
         <img
-          src="/assets/IMG_104330_0.jpeg"
+          src={profilePic}
           alt="Profile"
           style={{ width: '150px', borderRadius: '50%' }}
         />

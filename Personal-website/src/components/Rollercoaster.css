@@ -9,58 +9,104 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 2rem;
+}
+
+.modal-content {
+    background-color: #1e293b;
+    color: #f8fafc;
+    padding: 1.5rem;
     border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     max-width: 400px;
     text-align: center;
     animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  .modal-content h2 {
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-content h2 {
     margin-bottom: 0.5rem;
-  }
-  
-  .modal-content button {
+}
+
+.modal-content button {
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: #0077be;
+    padding: 0.6rem 1.2rem;
+    background: #2563eb;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease;
-  }
-  
-  .modal-content button:hover {
+    font-weight: bold;
+}
+
+.modal-content button:hover {
     background: #005f91;
-  }
-  
-  .milestone-tooltip {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 0.5rem;
+}
+
+.milestone-tooltip {
+    text-align: center;
+    font-weight: 600;
+    background: rgba(30, 41, 59, 0.85);
+    color: #f1f5f9;
+    padding: 0.6rem 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    border: 1px solid #334155;
+    backdrop-filter: blur(5px);
     font-size: 0.9rem;
-  }
-  
-  @keyframes fadeIn {
+}
+
+@keyframes fadeIn {
     from {
-      opacity: 0;
-      transform: scale(0.95);
+        opacity: 0;
+        transform: scale(0.95);
     }
+
     to {
-      opacity: 1;
-      transform: scale(1);
+        opacity: 1;
+        transform: scale(1);
     }
-  }
-  
-  .roller-container {
+}
+
+.roller-container {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     position: relative;
     overflow: hidden;
-  }  
+    background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+}
+.roller-wrapper {
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    background-color: #0f172a;
+  }
+
+.milestone-box {
+    width: 2rem;
+    height: 1rem;
+    background: #ff6f61;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.milestone-box:hover {
+    transform: scale(1.1);
+    background-color: #e05547;
+}
+
+.professional-theme {
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+
+.milestone-year {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 0.25rem;
+}
